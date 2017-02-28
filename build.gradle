@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName="com.amazonaws.samples.S3Sample"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE"
+    }
+}
+
+apply plugin: "io.spring.dependency-management"
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.98'
+    }
+}
+
+dependencies {
+    compile 'com.amazonaws:aws-java-sdk-s3'
+}
